@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      uri: ${accountloginms.config.server.url:http://192.168.99.1:8888}
+      fail-fast: true
+  application:
+    name: accountloginms
+  profiles:
+    active: dev

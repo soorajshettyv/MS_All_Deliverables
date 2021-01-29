@@ -1,0 +1,52 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: configserver
+    version: v1
+  name: configserver
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: configserver
+      version: v1
+  strategy: 
+    rollingUpdate: 
+      maxSurge: 1
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template: 
+    metadata: 
+      labels: 
+        app: configserver
+        version: v1
+    spec: 
+      containers: 
+        - 
+
+          image: "soorajshettyv/configserverblore:1"
+          imagePullPolicy: Always
+          name: configserver
+          ports: 
+            - 
+              containerPort: 8888
+              hostPort: 8888
+              name: httpport
+          env: 
+            - 
+              name: configserver.git.url
+              value: "https://github.ibm.com/soorajshettyv/LabsConfig.git"
+            - 
+              name: configserver.git.username
+              value: soorajshettyv@in.ibm.com
+            - 
+              name: configserver.git.pass
+              value: "a87988634302b2367a6ba29b10b4d208f9319a23"
+            - 
+              name: rabbitmq.host
+              value: rabbitmq-master
+            - 
+              name: rabbitmq.port
+              value: "5672"

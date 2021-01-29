@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configserverconfigs
+  namespace: default
+data:
+  configserver.git.url:  "https://github.ibm.com/soorajshettyv/LabsConfig.git"
+  rabbitmq.host: rabbitmq-master
+  rabbitmq.port: "5672"
+  configserver.git.pass: a87988634302b2367a6ba29b10b4d208f9319a23

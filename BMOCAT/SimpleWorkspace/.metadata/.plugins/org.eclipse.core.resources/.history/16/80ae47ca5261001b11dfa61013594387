@@ -1,0 +1,76 @@
+#server:
+ # port: 0
+server:
+  port: 9101
+spring:
+  #sleuth:
+    #trace-id128: true
+    #sampler:
+      #probability: 1.0
+  #zipkin:
+    #enabled: true
+    #base-url: ${zipkin.url:http://192.168.99.100:9411/}
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+  datasource:
+    url: ${accountloginms.datasource.url:jdbc:h2:mem:accountloginmsDb;DB_CLOSE_DELAY=-1}
+    username: ${accountloginms.datasource.username:sa}
+    password: ${accountloginms.datasource.password:}
+    driver-class-name: ${accountloginms.datasource.driver:org.h2.Driver}
+  jpa:
+    show-sql: true
+      
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
+    preferIpAddress: true
+    metadata-map:
+      zone: A
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: ${accountloginms.eureka.url:http://192.168.99.1:8761/eureka}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
+        loggerLevel: basic 
+         
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+        timeout:
+          enabled: false          
+
+jwtSecret: mySecretKey
+jwtExpirationMs: 86400000
+    
+

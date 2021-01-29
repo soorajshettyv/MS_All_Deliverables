@@ -1,0 +1,66 @@
+server:  
+  port: ${PORT:8765}
+
+spring:
+  sleuth:
+    trace-id128: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    base-url: ${zipkin.url:http://192.168.99.100:9411/}
+
+
+zuul:
+  sensitive-headers:
+  host:
+    time-to-live: -1
+    connect-timeout-millis: 60000
+    max-per-route-connections: 100
+    max-total-connections: 500
+    socket-timeout-millis: 60000 
+ribbon:
+  ReadTimeout: 60000
+  connection-timeout: 60000
+  eureka:
+    enabled: true
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
+    preferIpAddress: true
+    metadata-map:
+      zone: A
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: ${apigateway.eureka.url:http://192.168.99.1:8761/eureka}management:  endpoint:    shutdown:      enabled: true
+    web:
+      exposure:
+        include: "*"
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 60000
+        loggerLevel: basic 
+         
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+        timeout:
+          enabled: false       

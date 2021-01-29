@@ -1,0 +1,80 @@
+http://192.168.99.1:8761/
+
+POST - http://192.168.99.1:9101/cat/user/register
+
+{  
+   "username"  : "test1",
+   "password" : "password"
+}  
+
+POST - http://192.168.99.1:9101/cat/user/login
+{  
+   "userId"  : "test1",
+   "password" : "password"
+ } 
+
+
+POST - http://192.168.99.1:8765/accountloginms/cat/user/register
+
+{  
+   "username"  : "admin",
+   "password" : "password",
+   "role" : ["admin"]
+} 
+
+{  
+   "username"  : "test",
+   "email" : "test@gmail.com",
+   "password" : "password"
+} 
+
+
+POST - http://192.168.99.1:8765/accountloginms/cat/user/login
+
+{
+	"username": "admin",
+	"password": "password"
+}
+
+
+POST - http://192.168.99.1:8765/accountloginms/cat/manageProxy/proxydef/addProxyDef
+
+{
+	"prxy_cd" : "91",
+	"crt_usr_id": "92",
+	"prxy_stat_tp_cd": "93"
+	
+}
+
+
+POST - http://192.168.99.1:8765/manageproxyms/proxydef/addProxyDef
+
+{
+	"prxy_cd" : "91",
+	"crt_usr_id": "92",
+	"prxy_stat_tp_cd": "93"
+	
+}
+
+PUT - http://192.168.99.1:8765/manageproxyms/proxydef/updateProxyDef
+
+{
+        "prxy_id": 2,
+        "prxy_cd": "11",
+        "crt_usr_id": "12",
+        "prxy_stat_tp_cd": "23"
+
+}
+
+
+
+
+GET - http://192.168.99.1:8765/manageproxyms/proxydef/getProxyDef
+
+GET - http://192.168.99.1:8765/manageproxyms/proxydef/getProxyDefById/02
+
+DELETE - http://192.168.99.1:8765/manageproxyms/proxydef/deleteProxyDef/01
+
+
+eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsIlJPTEUiOiJST0xFX0NBVEFETUlOIiwiaWF0IjoxNjEwNzA2NTk1LCJleHAiOjE2MTA3OTI5OTV9.XNxH89ATyq0YAYGloXA8Cq6smkOksd9KHaopuiC5zKFnO_JxM_Ud9Kse_UmReSgp-zjpnDGuXNsU8PQLnqRu4g
+
